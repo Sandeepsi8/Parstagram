@@ -9,6 +9,7 @@ import UIKit
 import Parse
 
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -20,10 +21,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Parse.initialize(
             with: ParseClientConfiguration(block: { (configuration: ParseMutableClientConfiguration) -> Void in
-                configuration.applicationId = "Parstagram"
-                configuration.server = "https://morning-brushlands-45139.herokuapp.com"
+                configuration.applicationId = "Parstagram1"
+                configuration.server = "https://morning-brushlands-45139.herokuapp.com/parse"
             })
         )
+        if PFUser.current() != nil {
+            let main = UIStoryboard(name: "Main", bundle: nil)
+            let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
+            
+            window?.rootViewController = feedNavigationController
+        }
         
         return true
     }
@@ -53,3 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
 }
+

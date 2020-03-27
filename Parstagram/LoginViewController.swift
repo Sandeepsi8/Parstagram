@@ -15,8 +15,11 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var passwordField: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
     }
     
     @IBAction func onSignIn(_ sender: Any) {
@@ -24,10 +27,9 @@ class LoginViewController: UIViewController {
         let password = passwordField.text!
         
         PFUser.logInWithUsername(inBackground: username, password: password) { (user, error) in
-            if user != nil
-            {
+            if user != nil{
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
-            } else
+            }else
             {
                 print("Error: \(error?.localizedDescription)")
             }
@@ -45,7 +47,6 @@ class LoginViewController: UIViewController {
             if success {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }else
-                
             {
                 print("Error: \(error?.localizedDescription)")
             }
@@ -56,6 +57,7 @@ class LoginViewController: UIViewController {
     
     /*
      // MARK: - Navigation
+     
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
